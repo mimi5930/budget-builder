@@ -5,6 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
+    "convert": "node utils/convertData.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

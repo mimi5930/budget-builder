@@ -11,12 +11,12 @@ const convertFile = async () => {
   // make data prettier
   const newData = [];
   for await (const obj of data) {
-    let { Date, Description, Amount, Balance } = obj;
+    let { Date: date, Description, Amount, Balance } = obj;
     const newObj = {
-      date: Date,
+      date: new Date(date),
       description: Description.replace(/  +/g, ' '),
-      amount: Amount.replace('$', ''),
-      balance: Balance.replace(',', '').replace('$', '')
+      amount: parseFloat(Amount.replace('$', '')),
+      balance: parseFloat(Balance.replace(',', '').replace('$', ''))
     };
 
     newData.push(newObj);
@@ -32,4 +32,5 @@ const convertFile = async () => {
   });
 };
 
-module.exports = convertFile;
+convertFile();
+// module.exports = convertFile;
