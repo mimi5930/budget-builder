@@ -1,24 +1,25 @@
 {
   "name": "mike-budget",
   "version": "1.0.0",
-  "description": "An app for me to organize my life",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
-    "start": "node server.js",
-    "develop": "nodemon server.js",
-    "convert": "node utils/convertData.js",
-    "seed": "node utils/seeds.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server/server.js",
+    "develop": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
+    "install": "cd server && npm i && cd ../client && npm i"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mimi5930/mike-budget.git"
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "csvtojson": "^2.0.10",
-    "date-fns": "^2.28.0",
-    "express": "^4.18.1",
-    "mongoose": "^6.3.6"
+  "bugs": {
+    "url": "https://github.com/mimi5930/mike-budget/issues"
   },
+  "homepage": "https://github.com/mimi5930/mike-budget#readme",
+  "description": "",
   "devDependencies": {
-    "nodemon": "^2.0.16"
+    "concurrently": "^7.2.1"
   }
 }
