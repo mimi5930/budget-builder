@@ -4,7 +4,17 @@ const csv = require('csvtojson');
 // convert file to array
 const convertFile = async () => {
   // read name of file in input dir
-  const inputName = fs.readdirSync('./input')[0];
+  const readInputDir = fs.readdirSync('./input');
+
+  if (readInputDir.length === 0) {
+    console.log('Please provide a .csv file in the input folder');
+    return;
+  } else if (readInputDir.length > 1) {
+    console.log('Please provide only one .csv file in the input folder');
+    return;
+  }
+
+  const inputName = readInputDir[0];
 
   const data = await csv().fromFile(`./input/${inputName}`);
 
