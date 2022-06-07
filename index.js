@@ -27,7 +27,7 @@ const convertFile = async () => {
     if (err) {
       console.error(err);
     } else {
-      console.log('data.json written in the dist folder');
+      console.log('data.json successfully written in the dist folder');
     }
   });
 };
