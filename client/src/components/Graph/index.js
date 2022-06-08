@@ -9,8 +9,9 @@ import {
   Filler
 } from 'chart.js';
 import { Line, getElementAtEvent } from 'react-chartjs-2';
-import { Box } from '@mui/material';
+import { Box, Button } from '@mui/material';
 import sampleData from '../../sampledata.json';
+import GraphButtons from '../GraphButtons';
 
 ChartJS.register(
   CategoryScale,
@@ -87,20 +88,23 @@ export default function Graph(props) {
   }
 
   return (
-    <Box
-      sx={{
-        marginLeft: 'auto',
-        marginRight: 'auto',
-        marginTop: 30,
-        width: '50%'
-      }}
-    >
-      <Line
-        ref={chartRef}
-        data={data}
-        options={options}
-        onClick={clickHandler}
-      />
+    <Box>
+      <Box
+        sx={{
+          marginLeft: 'auto',
+          marginRight: 'auto',
+          marginTop: 25,
+          width: '50%'
+        }}
+      >
+        <Line
+          ref={chartRef}
+          data={data}
+          options={options}
+          onClick={clickHandler}
+        />
+      </Box>
+      <GraphButtons />
     </Box>
   );
 }
