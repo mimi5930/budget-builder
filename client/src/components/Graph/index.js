@@ -9,9 +9,8 @@ import {
   Filler
 } from 'chart.js';
 import { Line, getElementAtEvent } from 'react-chartjs-2';
-import { Box, Button } from '@mui/material';
+import { Box } from '@mui/material';
 import sampleData from '../../sampledata.json';
-import GraphButtons from '../GraphButtons';
 
 ChartJS.register(
   CategoryScale,
@@ -35,7 +34,7 @@ export default function Graph(props) {
     totals.push(transaction.balance);
     descriptions.push(
       transaction.description
-        .replace('Point of Sale Withdrawal ', '')
+        .replace('Point Of Sale Withdrawal ', '')
         .replace('External Withdrawal ', '')
     );
     amounts.push(transaction.amount.toFixed(2));
@@ -104,7 +103,6 @@ export default function Graph(props) {
           onClick={clickHandler}
         />
       </Box>
-      <GraphButtons />
     </Box>
   );
 }

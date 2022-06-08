@@ -5,16 +5,17 @@ import {
   FormControl,
   InputLabel,
   MenuItem,
-  Select
+  Select,
+  TextField
 } from '@mui/material';
 
-const ITEM_HEIGHT = 48;
+const ITEM_HEIGHT = 25;
 const ITEM_PADDING_TOP = 8;
 const MenuProps = {
   PaperProps: {
     style: {
       maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-      width: 250
+      width: 100
     }
   }
 };
@@ -34,12 +35,12 @@ const months = [
   'Dec'
 ];
 
-export default function GraphButtons(params) {
-  const [month, setMonth] = useState('');
+export default function DateSelect(params) {
+  const [month, setMonth] = useState(months[new Date().getMonth()]);
+  const [year, setYear] = useState(new Date().getFullYear());
 
   return (
     <Box>
-      <Button variant="contained">Press me!</Button>
       <FormControl>
         <InputLabel id="month">Month</InputLabel>
         <Select
@@ -48,6 +49,7 @@ export default function GraphButtons(params) {
           label="Month"
           value={month}
           MenuProps={MenuProps}
+          sx={{ width: 100 }}
         >
           {months.map(monthOption => {
             return (
@@ -64,6 +66,18 @@ export default function GraphButtons(params) {
           })}
         </Select>
       </FormControl>
+      <FormControl>
+        <TextField
+          id="yearSelect"
+          label="Year"
+          value={year}
+          onChange={event => setYear(event.target.value)}
+          sx={{ width: 100 }}
+        />
+      </FormControl>
+      <Button variant="contained" sx={{ padding: 1.9, marginRight: 3 }}>
+        Search
+      </Button>
     </Box>
   );
 }

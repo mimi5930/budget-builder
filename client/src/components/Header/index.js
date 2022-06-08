@@ -22,7 +22,7 @@ export default function Header(props) {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            News
+            Budget Builder
           </Typography>
           <Button color="inherit">Login</Button>
         </Toolbar>
