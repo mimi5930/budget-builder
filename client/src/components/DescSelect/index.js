@@ -26,6 +26,7 @@ export default function DescSelect({ setTransactionData }) {
         label="Search"
         value={textInput}
         onChange={event => setTextInput(event.target.value)}
+        onKeyPress={event => event.key === 'Enter' && handleSubmit()}
       ></TextField>
       <LoadingButton
         loading={loading}

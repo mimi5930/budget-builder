@@ -88,6 +88,7 @@ export default function DateSelect({ setTransactionData }) {
           label="Year"
           value={year}
           onChange={event => setYear(event.target.value)}
+          onKeyPress={event => event.key === 'Enter' && submitHandler()}
           sx={{ width: 100 }}
         />
       </FormControl>
