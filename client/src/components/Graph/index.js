@@ -73,11 +73,13 @@ export default function Graph({ transactionData }) {
           displayColors: false,
           callbacks: {
             label: function (context) {
-              let label = descriptions[context.dataIndex];
+              let label =
+                descriptions[context.dataIndex] +
+                ` (${amounts[context.dataIndex]})`;
               return label;
             },
             afterLabel: function (context) {
-              let afterLabel = amounts[context.dataIndex];
+              let afterLabel = totals[context.dataIndex];
               return afterLabel;
             }
           }
