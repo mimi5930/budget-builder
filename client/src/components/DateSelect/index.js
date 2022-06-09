@@ -26,10 +26,10 @@ const months = [
   'Mar',
   'Apr',
   'May',
-  'June',
-  'July',
+  'Jun',
+  'Jul',
   'Aug',
-  'Sept',
+  'Sep',
   'Oct',
   'Nov',
   'Dec'

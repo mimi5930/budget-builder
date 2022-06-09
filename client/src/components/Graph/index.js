@@ -12,6 +12,8 @@ import { Line, getElementAtEvent } from 'react-chartjs-2';
 import { Box } from '@mui/material';
 import sampleData from '../../sampledata.json';
 
+import { format as dateFormat } from 'date-fns';
+
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -34,7 +36,7 @@ export default function Graph({ transactionData }) {
     var amounts = [];
     if (typeof transactionData !== 'string') {
       transactionData.forEach(transaction => {
-        labels.push(transaction.date);
+        labels.push(dateFormat(new Date(transaction.date), 'MMM do'));
         totals.push(transaction.balance);
         descriptions.push(
           transaction.description
