@@ -9,6 +9,8 @@ import {
   TextField
 } from '@mui/material';
 
+import { LoadingButton } from '@mui/lab';
+
 const ITEM_HEIGHT = 25;
 const ITEM_PADDING_TOP = 8;
 const MenuProps = {
@@ -47,7 +49,6 @@ export default function DateSelect({ setTransactionData }) {
         `http://localhost:3001/api/transactions/month/?month=${month}&year=${year}`
       );
       const data = await response.json();
-      console.log(data);
       setTransactionData(data);
     } catch (e) {
       console.log(e);
@@ -91,13 +92,14 @@ export default function DateSelect({ setTransactionData }) {
           sx={{ width: 100 }}
         />
       </FormControl>
-      <Button
+      <LoadingButton
+        loading={loading}
         variant="contained"
         sx={{ padding: 1.9, marginRight: 3 }}
         onClick={submitHandler}
       >
         Search
-      </Button>
+      </LoadingButton>
     </Box>
   );
 }
