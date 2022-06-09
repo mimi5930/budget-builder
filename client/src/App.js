@@ -37,7 +37,7 @@ function App() {
     <div className="App">
       <Header></Header>
       <Graph transactionData={transactionData}></Graph>
-      <DateSelect></DateSelect>
+      <DateSelect setTransactionData={setTransactionData}></DateSelect>
     </div>
   );
 }

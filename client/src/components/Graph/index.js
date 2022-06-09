@@ -10,7 +10,6 @@ import {
 } from 'chart.js';
 import { Line, getElementAtEvent } from 'react-chartjs-2';
 import { Box } from '@mui/material';
-import sampleData from '../../sampledata.json';
 
 import { format as dateFormat } from 'date-fns';
 

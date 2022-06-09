@@ -35,9 +35,25 @@ const months = [
   'Dec'
 ];
 
-export default function DateSelect(params) {
+export default function DateSelect({ setTransactionData }) {
   const [month, setMonth] = useState(months[new Date().getMonth()]);
   const [year, setYear] = useState(new Date().getFullYear());
+  const [loading, setLoading] = useState(false);
+
+  const submitHandler = async event => {
+    setLoading(true);
+    try {
+      const response = await fetch(
+        `http://localhost:3001/api/transactions/month/?month=${month}&year=${year}`
+      );
+      const data = await response.json();
+      console.log(data);
+      setTransactionData(data);
+    } catch (e) {
+      console.log(e);
+    }
+    setLoading(false);
+  };
 
   return (
     <Box>
@@ -75,7 +91,11 @@ export default function DateSelect(params) {
           sx={{ width: 100 }}
         />
       </FormControl>
-      <Button variant="contained" sx={{ padding: 1.9, marginRight: 3 }}>
+      <Button
+        variant="contained"
+        sx={{ padding: 1.9, marginRight: 3 }}
+        onClick={submitHandler}
+      >
         Search
       </Button>
     </Box>
