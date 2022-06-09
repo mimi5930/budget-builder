@@ -25,7 +25,7 @@ const convertFile = async () => {
     const newObj = {
       date: Date,
       description: Description.replace(/  +/g, ' '),
-      amount: parseFloat(Amount.replace('$', '')),
+      amount: parseFloat(Amount.replace(',', '').replace('$', '')),
       balance: parseFloat(Balance.replace(',', '').replace('$', ''))
     };
 
