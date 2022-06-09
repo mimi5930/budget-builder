@@ -18,7 +18,13 @@ function App() {
       const data = await monthData(month, year);
       if (data.length) transactionData.current = data;
       else {
-        const prevMonthData = await monthData(month - 1, year);
+        let prevMonth = month - 1;
+        let newYear = year;
+        if (prevMonth < 0) {
+          prevMonth = 12;
+          newYear = year - 1;
+        }
+        const prevMonthData = await monthData(prevMonth, newYear);
         transactionData.current = prevMonthData;
       }
     }
