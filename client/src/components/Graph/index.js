@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -21,63 +21,69 @@ ChartJS.register(
   Filler
 );
 
-export default function Graph(props) {
+export default function Graph({ transactionData }) {
   const chartRef = useRef();
+  const [chartData, setChartData] = useState({});
+  const [chartOptions, setChartOptions] = useState({});
 
-  // organize data
-  var labels = [];
-  var totals = [];
-  var descriptions = [];
-  var amounts = [];
-  sampleData.forEach(transaction => {
-    labels.push(transaction.date);
-    totals.push(transaction.balance);
-    descriptions.push(
-      transaction.description
-        .replace('Point Of Sale Withdrawal ', '')
-        .replace('External Withdrawal ', '')
-    );
-    amounts.push(transaction.amount.toFixed(2));
-  });
+  useEffect(() => {
+    // organize data
+    var labels = [];
+    var totals = [];
+    var descriptions = [];
+    var amounts = [];
+    if (typeof transactionData !== 'string') {
+      transactionData.forEach(transaction => {
+        labels.push(transaction.date);
+        totals.push(transaction.balance);
+        descriptions.push(
+          transaction.description
+            .replace('Point Of Sale Withdrawal ', '')
+            .replace('External Withdrawal ', '')
+        );
+        amounts.push(transaction.amount.toFixed(2));
+      });
+    }
 
-  const data = {
-    labels: labels,
-    datasets: [
-      {
-        data: totals,
-        fill: true,
-        backgroundColor: 'rgba(75,192,192,0.2)',
-        borderColor: 'rgba(75,192,192,1)',
-        tension: 0.2
-      }
-    ]
-  };
+    setChartData({
+      labels: labels,
+      datasets: [
+        {
+          data: totals,
+          fill: true,
+          backgroundColor: 'rgba(75,192,192,0.2)',
+          borderColor: 'rgba(75,192,192,1)',
+          tension: 0.2
+        }
+      ]
+    });
 
-  const options = {
-    responsive: true,
-    scales: {
-      y: {
-        beginAtZero: true
-      }
-    },
-    plugins: {
-      tooltip: {
-        titleAlign: 'center',
-        bodyAlign: 'center',
-        displayColors: false,
-        callbacks: {
-          label: function (context) {
-            let label = descriptions[context.dataIndex];
-            return label;
-          },
-          afterLabel: function (context) {
-            let afterLabel = amounts[context.dataIndex];
-            return afterLabel;
+    setChartOptions({
+      responsive: true,
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      },
+      plugins: {
+        tooltip: {
+          titleAlign: 'center',
+          bodyAlign: 'center',
+          displayColors: false,
+          callbacks: {
+            label: function (context) {
+              let label = descriptions[context.dataIndex];
+              return label;
+            },
+            afterLabel: function (context) {
+              let afterLabel = amounts[context.dataIndex];
+              return afterLabel;
+            }
           }
         }
       }
-    }
-  };
+    });
+  }, [transactionData]);
 
   function clickHandler(event) {
     const pointIndex = getElementAtEvent(chartRef.current, event)[0]?.index;
@@ -96,12 +102,16 @@ export default function Graph(props) {
           width: '50%'
         }}
       >
-        <Line
-          ref={chartRef}
-          data={data}
-          options={options}
-          onClick={clickHandler}
-        />
+        {transactionData === 'loading' ? (
+          <div>loading</div>
+        ) : (
+          <Line
+            ref={chartRef}
+            data={chartData}
+            options={chartOptions}
+            onClick={clickHandler}
+          />
+        )}
       </Box>
     </Box>
   );

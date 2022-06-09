@@ -7,7 +7,8 @@ import { useEffect, useRef, useState } from 'react';
 import monthData from './utils/initialFetch';
 
 function App() {
-  const transactionData = useRef('loading');
+  // const transactionData = useRef('loading');
+  const [transactionData, setTransactionData] = useState('loading');
 
   // get current month's transactions
   useEffect(() => {
@@ -16,7 +17,7 @@ function App() {
 
     async function firstFetch() {
       const data = await monthData(month, year);
-      if (data.length) transactionData.current = data;
+      if (data.length) setTransactionData(data);
       else {
         let prevMonth = month - 1;
         let newYear = year;
@@ -25,7 +26,7 @@ function App() {
           newYear = year - 1;
         }
         const prevMonthData = await monthData(prevMonth, newYear);
-        transactionData.current = prevMonthData;
+        setTransactionData(prevMonthData);
       }
     }
 
