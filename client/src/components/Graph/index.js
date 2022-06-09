@@ -102,7 +102,7 @@ export default function Graph({ transactionData }) {
           marginLeft: 'auto',
           marginRight: 'auto',
           marginTop: 25,
-          width: '50%'
+          width: '75%'
         }}
       >
         {transactionData === 'loading' ? (

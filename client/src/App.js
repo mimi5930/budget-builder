@@ -2,7 +2,8 @@ import './App.css';
 import Graph from './components/Graph';
 import Header from './components/Header';
 import DateSelect from './components/DateSelect';
-import { useEffect, useRef, useState } from 'react';
+import DescSelect from './components/DescSelect';
+import { useEffect, useState } from 'react';
 
 import monthData from './utils/initialFetch';
 
@@ -38,6 +39,7 @@ function App() {
       <Header></Header>
       <Graph transactionData={transactionData}></Graph>
       <DateSelect setTransactionData={setTransactionData}></DateSelect>
+      <DescSelect setTransactionData={setTransactionData}></DescSelect>
     </div>
   );
 }

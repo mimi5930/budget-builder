@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import {
   Box,
-  Button,
   FormControl,
   InputLabel,
   MenuItem,
@@ -42,7 +41,7 @@ export default function DateSelect({ setTransactionData }) {
   const [year, setYear] = useState(new Date().getFullYear());
   const [loading, setLoading] = useState(false);
 
-  const submitHandler = async event => {
+  const submitHandler = async () => {
     setLoading(true);
     try {
       const response = await fetch(
