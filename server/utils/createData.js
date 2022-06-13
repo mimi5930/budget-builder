@@ -1,6 +1,6 @@
 const fs = require('fs');
 const { faker } = require('@faker-js/faker');
-const { format: formatDate, add, compareAsc } = require('date-fns');
+const { format: formatDate, add } = require('date-fns');
 
 // array to hold fake data
 var data = [];
