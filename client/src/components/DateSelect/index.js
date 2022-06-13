@@ -45,7 +45,7 @@ export default function DateSelect({ setTransactionData }) {
     setLoading(true);
     try {
       const response = await fetch(
-        `http://localhost:3001/api/transactions/month/?month=${month}&year=${year}`
+        `http://localhost:3001/api/transactions/?month=${month}&year=${year}`
       );
       const data = await response.json();
       setTransactionData(data);

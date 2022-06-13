@@ -10,7 +10,7 @@ export default function DescSelect({ setTransactionData }) {
     setLoading(true);
     try {
       const response = await fetch(
-        `http://localhost:3001/api/transactions/type/${textInput}`
+        `http://localhost:3001/api/transactions/?type=${textInput}`
       );
       const data = await response.json();
       setTransactionData(data);
