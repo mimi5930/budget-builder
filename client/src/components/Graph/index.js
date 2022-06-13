@@ -22,17 +22,17 @@ ChartJS.register(
   Filler
 );
 
-export default function Graph({ transactionData }) {
+export default function Graph({ transactionData, open }) {
   const chartRef = useRef();
   const [chartData, setChartData] = useState({});
   const [chartOptions, setChartOptions] = useState({});
 
   useEffect(() => {
     // organize data
-    var labels = [];
-    var totals = [];
-    var descriptions = [];
-    var amounts = [];
+    var labels = [],
+      totals = [],
+      descriptions = [],
+      amounts = [];
     if (typeof transactionData !== 'string') {
       transactionData.forEach(transaction => {
         labels.push(dateFormat(new Date(transaction.date), 'MMM do'));
@@ -98,12 +98,20 @@ export default function Graph({ transactionData }) {
   return (
     <Box>
       <Box
-        sx={{
-          marginLeft: 'auto',
-          marginRight: 'auto',
-          marginTop: 25,
-          width: '75%'
-        }}
+        sx={
+          open
+            ? {
+                marginLeft: 50,
+                marginTop: 25,
+                width: '65%'
+              }
+            : {
+                marginLeft: 'auto',
+                marginRight: 'auto',
+                marginTop: 25,
+                width: '75%'
+              }
+        }
       >
         {transactionData === 'loading' ? (
           <div>loading</div>

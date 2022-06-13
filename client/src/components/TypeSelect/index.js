@@ -3,7 +3,7 @@ import { LoadingButton } from '@mui/lab';
 import React, { useState } from 'react';
 
 export default function TypeSelect({ setTransactionData }) {
-  const [type, setType] = useState(null);
+  const [type, setType] = useState('');
   const [loading, setLoading] = useState(false);
   const handleSubmit = async () => {
     if (!type) return;
