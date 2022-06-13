@@ -8,7 +8,7 @@ var data = [];
 // transaction prefixes
 var transactionNames = ['Point Of Sale Withdrawal', 'External Withdrawal'];
 
-for (let i = 0; i < 800; i++) {
+for (let i = 0; i < 1000; i++) {
 	const transaction = {
 		date: formatDate(
 			faker.date.between(add(Date.now(), { years: -3 }), Date.now()),
