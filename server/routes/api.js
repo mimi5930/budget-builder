@@ -102,17 +102,4 @@ router.get('/api/transactions', async (req, res) => {
   }
 });
 
-router.get('/api/types/:type', async (req, res) => {
-  try {
-    const transactions = await Transaction.find({
-      description: new RegExp(req.params.type, 'i')
-    })
-      .sort({ date: 1 })
-      .select('-__v');
-    res.json(transactions);
-  } catch (error) {
-    res.status(500).json(error);
-  }
-});
-
 module.exports = router;
